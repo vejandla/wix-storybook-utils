@@ -22,7 +22,7 @@
     "posttest": "yoshi lint",
     "start": "yoshi start & npm run storybook",
     "release": "yoshi release && gh-pages-auto-release --dist=storybook-static",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6009"
   },
   "peerDependencies": {
     "react": "^15.4.0"
@@ -95,6 +95,11 @@
     },
     "externals": {
       "react": "React"
+    },
+    "servers": {
+      "cdn": {
+        "prt": 3204
+      }
     }
   },
   "jest": {

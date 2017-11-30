@@ -49,6 +49,11 @@
     "externals": {
       "react": "React",
       "react-dom": "ReactDOM"
+    },
+    "servers": {
+      "cdn": {
+        "prt": 3203
+      }
     }
   },
   "jest": {
@@ -67,7 +72,7 @@
       "<rootDir>/dist/",
       "<rootDir>/node_modules/"
     ],
-    "testRegex": "/src/.*\\.spec\\.(ts|tsx)$",    
+    "testRegex": "/src/.*\\.spec\\.(ts|tsx)$",
     "setupTestFrameworkScriptFile": "<rootDir>/jest-setup"
   }
 }
