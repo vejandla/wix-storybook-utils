@@ -59,6 +59,15 @@ export function isFocused(element: ElementFinder) {
   return element.equals(browser.driver.switchTo().activeElement());
 }
 
+export const hasAttribute = (elementFinder: ElementFinder, attributeName: string) =>
+  elementFinder.getAttribute(attributeName).then(value => value !== null)
+
+/**
+ * Symbol for accessing driver methods which are internal
+ * (we don't want to expose them to wix-ui consumers)
+ */
+export const INTERNAL_DRIVER_SYMBOL = Symbol('internal-driver');
+
 // This interface is copied over from protractor because it isn't exported
 export interface ILocation {
   x: number;
