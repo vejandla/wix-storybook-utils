@@ -1,3 +1,4 @@
+import omit from 'lodash/omit';
 import {
   browser,
   promise,
@@ -60,13 +61,29 @@ export function isFocused(element: ElementFinder) {
 }
 
 export const hasAttribute = (elementFinder: ElementFinder, attributeName: string) =>
-  elementFinder.getAttribute(attributeName).then(value => value !== null)
+  elementFinder.getAttribute(attributeName).then(value => value !== null);
 
 /**
  * Symbol for accessing driver methods which are internal
  * (we don't want to expose them to wix-ui consumers)
  */
 export const INTERNAL_DRIVER_SYMBOL = Symbol('internal-driver');
+
+/**
+* Flatten driver by spreading all internal methods,
+* and removing the INTERNAL_DRIVER property.
+* Does not mutate the given driver.
+*/
+export function flattenInternalDriver(driver: any) {
+  if (driver[INTERNAL_DRIVER_SYMBOL]) {
+    return {
+      ...omit(driver, INTERNAL_DRIVER_SYMBOL),
+      ...driver[INTERNAL_DRIVER_SYMBOL]
+    };
+  } else {
+    return driver;
+  }
+ }
 
 // This interface is copied over from protractor because it isn't exported
 export interface ILocation {

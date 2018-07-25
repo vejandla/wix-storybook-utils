@@ -160,6 +160,18 @@ const someDriverFactory = ({element}) => {
 };
 ```
 
+### `flattenInternalDriver`
+
+Flatten driver by spreading all internal methods,
+and removing the INTERNAL_DRIVER property.
+Does not mutate the given driver.
+
+```javascript
+import {flattenInternalDriver} from 'wix-ui-test-utils/protractor';
+
+flattenInternalDriver(driver);
+```
+
 ## Testkit helpers
 
 ### `createDriverFactory`
