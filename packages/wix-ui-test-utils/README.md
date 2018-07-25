@@ -95,6 +95,17 @@ import {hasEllipsis} from 'wix-ui-test-utils/protractor';
 expect(hasEllipsis(el)).toEqual(true);
 ```
 
+### `hasAttribute`
+
+Checks if the element has attribute
+
+```javascript
+import {hasAttribute} from 'wix-ui-test-utils/protractor';
+
+// `el` is a DOM node
+expect(hasAttribute(el, 'id')).toEqual(true);
+```
+
 ### `waitForVisibilityOf`
 
 Wait until an element is visible.
@@ -127,6 +138,26 @@ Move the mouse out of the element.
 import {mouseLeave} from 'wix-ui-test-utils/protractor';
 
 mouseLeave(element);
+```
+
+### `INTERNAL_DRIVER_SYMBOL`
+
+Symbol for accessing driver methods which are internal
+(we don't want to expose them to wix-ui consumers)
+
+```javascript
+import {INTERNAL_DRIVER_SYMBOL} from 'wix-ui-test-utils/protractor';
+
+const someDriverFactory = ({element}) => {
+
+  return {
+    exists: () => element.exists(),
+    [INTERNAL_DRIVER_SYMBOL]: {
+      element,
+      click: () => element.click(),
+    }
+  };
+};
 ```
 
 ## Testkit helpers
